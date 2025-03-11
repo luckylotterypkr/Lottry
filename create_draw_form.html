@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %} - Create Custom Draw{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0">
+                    <i class="fas fa-plus-circle me-2"></i>Create Custom Lottery Draw
+                </h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('custom_draw') }}">
+                    <div class="mb-4">
+                        <label for="first_prize" class="form-label">First Prize Number (4 digits)</label>
+                        <input type="text" class="form-control" id="first_prize" name="first_prize" 
+                               pattern="[0-9]{4}" maxlength="4" required>
+                        <div class="form-text">Enter a 4-digit number (0000-9999)</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Second Prize Numbers (3 numbers, 4 digits each)</label>
+                    </div>
+                    
+                    {% for i in range(3) %}
+                    <div class="mb-3">
+                        <label for="second_prize_{{ i }}" class="form-label">Second Prize #{{ i+1 }}</label>
+                        <input type="text" class="form-control" id="second_prize_{{ i }}" 
+                               name="second_prize_{{ i }}" pattern="[0-9]{4}" maxlength="4" required>
+                    </div>
+                    {% endfor %}
+                    
+                    <div class="d-flex justify-content-between mt-4">
+                        <button type="submit" class="btn btn-primary">Create Draw</button>
+                        <a href="{{ url_for('admin') }}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
