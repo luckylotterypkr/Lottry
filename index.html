@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %} - Home{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0">
+                    <i class="fas fa-trophy me-2"></i>Latest Lottery Results
+                </h2>
+            </div>
+            <div class="card-body">
+                {% if latest_draw %}
+                <h5 class="card-title">Draw Date: {{ latest_draw.date.strftime('%B %d, %Y at %I:%M %p') }}</h5>
+                
+                <div class="mt-4">
+                    <!-- First Prize Slot Machine Animation -->
+                    <h3 class="text-center mb-3 gold-text">First Prize</h3>
+                    <div class="d-flex justify-content-center mb-4">
+                        <div class="lottery-number first-prize animate__animated animate__bounceIn animate__delay-1s" data-number="{{ first_prize }}">
+                            <div class="slot-machine-container d-flex">
+                                {% for digit in first_prize %}
+                                <div class="slot-reel flex-fill" data-target="{{ digit }}">
+                                    <div class="slot-digit">0</div>
+                                    <div class="slot-overlay"></div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Second Prizes Slot Machine Animation -->
+                    <h3 class="text-center mb-3 gold-text">Second Prizes</h3>
+                    <div class="row justify-content-center">
+                        {% for row in second_prizes %}
+                            <div class="d-flex justify-content-center flex-wrap mb-2">
+                                {% for number in row %}
+                                <div class="lottery-number second-prize me-3 animate__animated animate__bounceIn animate__delay-2s" data-number="{{ number }}">
+                                    <div class="slot-machine-container d-flex">
+                                        {% for digit in number %}
+                                        <div class="slot-reel flex-fill" data-target="{{ digit }}">
+                                            <div class="slot-digit">0</div>
+                                            <div class="slot-overlay"></div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% else %}
+                <div class="alert alert-info">
+                    No lottery draws have been conducted yet. The first draw will happen soon!
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-info">
+                <h3 class="mb-0">Next Draw</h3>
+            </div>
+            <div class="card-body">
+                <div class="text-center">
+                    <i class="fas fa-clock fa-3x mb-3"></i>
+                    <h4 id="next-draw-time" data-time="{{ next_draw }}">
+                        {{ next_draw }}
+                    </h4>
+                    <div id="countdown" class="mt-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header bg-secondary">
+<h3 class="mb-0">Latest Feedback</h3>
+            </div>
+            <div class="card-body p-0">
+                {% if feedback_messages %}
+                <ul class="list-group list-group-flush">
+                    {% for feedback in feedback_messages %}
+                    <li class="list-group-item">
+                        <strong>{{ feedback.name }}</strong>
+                        <small class="text-muted d-block">{{ feedback.date.strftime('%b %d, %Y') }}</small>
+                        <p class="mb-0 mt-2">{{ feedback.message|truncate(100) }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <div class="p-3">
+                    <p class="text-center">No feedback submitted yet.</p>
+                </div>
+                {% endif %}
+                <div class="card-footer text-center">
+                    <a href="{{ url_for('feedback') }}" class="btn btn-sm btn-outline-secondary">Submit Feedback</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
