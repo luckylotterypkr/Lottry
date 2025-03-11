@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %} - Feedback Management{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Feedback Management</h1>
+    <a href="{{ url_for('admin') }}" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left me-2"></i>Back to Admin
+    </a>
+</div>
+
+<div class="card">
+    <div class="card-header bg-info">
+        <h2 class="mb-0">User Feedback</h2>
+    </div>
+    <div class="card-body">
+        {% if feedback_messages %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for feedback in feedback_messages %}
+                    <tr>
+                        <td>{{ feedback.date.strftime('%Y-%m-%d %H:%M') }}</td>
+                        <td>{{ feedback.name }}</td>
+                        <td>{{ feedback.email or '-' }}</td>
+                        <td>{{ feedback.message }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            No feedback received yet.
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
