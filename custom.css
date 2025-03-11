@@ -1,0 +1,122 @@
+/* B{
+  "name": "Luxury Lottery App",
+  "short_name": "LuxLottery",
+  "description": "Luxury Lottery application with real-time draw results and notifications",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#ffd700",
+  "icons": [
+    {
+      "src": "/static/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}-events: none;
+    z-index: -1;
+}
+
+/* Lottery number styles */
+.lottery-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    letter-spacing: 0.25rem;
+    margin: 0.5rem;
+    min-width: 180px;
+    cursor: default;
+}
+
+.lottery-number-sm {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.3rem;
+    text-align: center;
+    letter-spacing: 0.1rem;
+    display: inline-block;
+}
+
+.first-prize {
+    background-color: var(--gold);
+    color: var(--black);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+.second-prize {
+    background-color: var(--gold-dark);
+    color: var(--black);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+/* Countdown timer styles */
+.countdown-item {
+    text-align: center;
+    margin: 0 0.5rem;
+}
+
+.countdown-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: var(--black-darker);
+    border: 1px solid var(--gold-dark);
+    color: var(--gold);
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    min-width: 2.5rem;
+}
+
+.countdown-label {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    color: var(--gold-dark);
+}
+
+/* Admin panel enhancements */
+.table-hover tbody tr:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+}
+
+.table-dark {
+    background-color: var(--black-darker);
+}
+
+/* Feedback card styling */
+.list-group-item {
+    background-color: var(--black-light);
+    border-color: var(--gold-dark);
+}
+
+/* Make sure form elements have good contrast */
+.form-control, .form-select {
+    background-color: var(--black-light);
+    color: #fff;
+    border-color: var(--gold-dark);
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: var(--black-light);
+    color: #fff;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
+}
+
+/* Fix pagination active state for better visibility */
+.page-item.active .page-link {
+    background-color: var(--gold);
+    border-color: var(--gold);
+    color: var(--black);
+}
+
+.page-link {
+    color: var(--gold);
+    background-color: var(--black-light);
+    border-color: var(--gold-dark);
